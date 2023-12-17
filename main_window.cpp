@@ -54,12 +54,13 @@ void Main_Window::fill_files_list()
         string += std::to_string(a + 1);
         string += ". ";
         string += files[a].get_path().relative_path().generic_u16string();
-        string.append(" (");
+        string += " (";
         string += to_pretty_string(processed_size.first);
-        string += " ";
+        string += ' ';
         string += processed_size.second;
         string += ") ";
         string += (files[a].is_removable() ? "[Removable]" : "[Original]");
+
         ui->files_list->addItem(string);
         if (files[a].is_removable())
             ui->files_list->item(ui->files_list->count() - 1)->setForeground(Qt::GlobalColor::red);
@@ -118,6 +119,7 @@ void Main_Window::calculate_and_display_saved_disk_space()
 
     auto processed_space = process_bytes(total_saved_disk_space);
     QString string = saved_disk_space_label_prefix;
+
     string += to_pretty_string(processed_space.first);
     string += ' ';
     string += processed_space.second;
@@ -188,6 +190,7 @@ void Main_Window::on_button_remove_duplicates_clicked()
 
     auto processed_space = process_bytes(total_saved_disk_space);
     QString string = cleanup_message_box_prefix;
+
     string += to_pretty_string(processed_space.first);
     string += ' ';
     string += processed_space.second;
