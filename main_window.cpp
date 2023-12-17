@@ -55,7 +55,7 @@ void Main_Window::fill_files_list()
         string += ". ";
         string += files[a].get_path().relative_path().generic_u16string();
         string.append(" (");
-        string += double_to_pretty_string(processed_size.first);
+        string += to_pretty_string(processed_size.first);
         string += " ";
         string += processed_size.second;
         string += ") ";
@@ -118,9 +118,15 @@ void Main_Window::calculate_and_display_saved_disk_space()
 
     auto processed_space = process_bytes(total_saved_disk_space);
     QString string = saved_disk_space_label_prefix;
-    string += double_to_pretty_string(processed_space.first);
+    string += to_pretty_string(processed_space.first);
     string += ' ';
     string += processed_space.second;
+    if (processed_space.second != "B")
+    {
+        string += " [";
+        string += to_pretty_string(total_saved_disk_space);
+        string += " bytes]";
+    }
 
     ui->saved_disk_space_label->setText(string);
 }
@@ -182,9 +188,15 @@ void Main_Window::on_button_remove_duplicates_clicked()
 
     auto processed_space = process_bytes(total_saved_disk_space);
     QString string = cleanup_message_box_prefix;
-    string += double_to_pretty_string(processed_space.first);
+    string += to_pretty_string(processed_space.first);
     string += ' ';
     string += processed_space.second;
+    if (processed_space.second != "B")
+    {
+        string += " [";
+        string += to_pretty_string(total_saved_disk_space);
+        string += " bytes]";
+    }
 
     reset_directory();
 

@@ -6,7 +6,8 @@
 
 #include <QString>
 
-std::string double_to_pretty_string(double value);
+std::string to_pretty_string(size_t value);
+std::string to_pretty_string(double value);
 std::pair<double, QString> process_bytes(size_t bytes);
 
 class File

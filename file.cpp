@@ -1,12 +1,37 @@
 #include "file.h"
 
 #include <sstream>
+#include <algorithm>
 
 // ================================================================
 // | Free Functions                                               |
 // ================================================================
 
-std::string double_to_pretty_string(double value)
+std::string to_pretty_string(size_t value)
+{
+    std::string result;
+
+    if (value == 0)
+        return "0";
+
+    for (int skipper = 0; value > 0; ++skipper)
+    {
+        result += ('0' + static_cast<char>(value % 10));
+        value /= 10;
+
+        if (skipper == 2 && value > 0)
+        {
+            result += ' ';
+            skipper = -1;
+        }
+    }
+
+    std::reverse(result.begin(), result.end());
+
+    return result;
+}
+
+std::string to_pretty_string(double value)
 {
     std::stringstream ss;
     int front_numbers = 0;
