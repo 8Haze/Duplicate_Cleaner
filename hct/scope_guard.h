@@ -33,7 +33,7 @@ namespace hct
 
 		Scope_Guard() = delete;
 		Scope_Guard(const Scope_Guard&) = delete;
-		Scope_Guard(Scope_Guard&& obj) = delete;
+        Scope_Guard(Scope_Guard&&) = delete;
 		Scope_Guard& operator=(const Scope_Guard&) = delete;
 		Scope_Guard& operator=(Scope_Guard&&) = delete;
 
