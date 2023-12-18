@@ -21,7 +21,7 @@ private:
     inline static const QString saved_disk_space_label_prefix = "Disk space that can be freed: ";
     inline static const QString cleanup_message_box_prefix = "Cleanup complete. Total saved disk space: ";
 
-    Ui::Main_Window *ui;
+    Ui::Main_Window* ui;
 
     std::filesystem::path directory;
     std::vector<File> files;
