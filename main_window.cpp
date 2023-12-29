@@ -51,7 +51,7 @@ void Main_Window::fill_files_list()
         QString string;
         string.reserve(files[a].get_path().filename().generic_u16string().size() + 30);
 
-        string += std::to_string(a + 1);
+        string += QString::number(a + 1);
         string += ". ";
         string += files[a].get_path().relative_path().generic_u16string();
         string += " (";
